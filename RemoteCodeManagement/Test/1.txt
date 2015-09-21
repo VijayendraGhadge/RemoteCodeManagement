@@ -1,0 +1,68 @@
+//DataStore.cpp - ......
+
+#include "DataStore.h"   //"" for local headers
+#include <iostream>    // system file in .....
+
+#ifdef TEST_DATASTORE
+int main()
+
+{
+	std::cout << "\n Testing DataStore";
+	DataStore ds;
+	ds.save("one");vijayendra
+	ds.save("two");
+	ds.save("three");
+	DataStore::iterator iter = ds.begin();
+	std::cout << "\n "<< (*iter).c_str();
+	for (auto item : ds)
+	{
+		std::cout << "\n" << item.c_str();
+	}
+
+	std::cout << "\n\n";
+}
+
+#endif
+
+
+void DataStore::save(const string& filespec) {
+	//filespec
+	//	//strcpy(Path,<string>_MAX_PATH); pair<File, ListOfIters>(filespec, );
+	paths.insert(filespec);
+}
+
+void DataStore::save(const string& filename, const string& path) {
+	//paths.insert(path);
+	save(path);
+	PathIter pathiter;
+	ListOfIters listofiters;
+	iterator iter;
+	for (pathiter = paths.begin(); pathiter != paths.end(); ++pathiter)
+	{
+		//auto it = store.begin();
+
+		//if (store.find(filename) == store.end()) {
+			// not found
+			//listofiters.push_back(pathiter);
+
+//		}
+//		else {
+			// found
+			//ListOfIters it;
+
+
+//		}
+		//	auto it=store.begin();
+		if (it != store.end()) 
+		{
+			it->second.push_back(pathiter);
+		}
+		else
+		{
+			listofiters.push_back(pathiter);
+			store.insert({ filename, listofiters });
+		}
+	}
+	
+
+}
